@@ -1,3 +1,5 @@
+package entities;
+
 import entities.Cardapio;
 import entities.Refeicao;
 import enums.TipoRefeicaoEnum;
