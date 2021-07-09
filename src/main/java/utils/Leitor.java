@@ -33,4 +33,24 @@ public class Leitor {
 
         return opcao;
     }
+
+    public String lerPedido() {
+        Scanner scanNome = new Scanner(System.in);
+        Impressora.imprimirMensagemNome();
+        String nome = scanNome.next();
+
+        return nome;
+    }
+
+    public String lerContinuacao() {
+        Scanner scanContinuacao = new Scanner(System.in);
+        Impressora.imprimirMensagemContinuacao();
+        String continuacao = scanContinuacao.next();
+
+        if (!continuacao.equalsIgnoreCase("S") && !continuacao.equalsIgnoreCase("N")) {
+            throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
+        }
+
+        return continuacao;
+    }
 }

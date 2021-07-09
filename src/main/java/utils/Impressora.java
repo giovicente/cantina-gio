@@ -1,5 +1,6 @@
 package utils;
 
+import entities.Pedido;
 import entities.Refeicao;
 
 public class Impressora {
@@ -17,11 +18,29 @@ public class Impressora {
         System.out.println("=======================");
     }
 
-    public static void escreverMenuPrincipal() {
+    public static void imprimirMenuPrincipal() {
         System.out.println("**** Seja bem-vindo ao Gio's Cantina ****");
         System.out.println("Selecione a opção desejada:");
         System.out.println("0 - Cadastrar Refeição");
         System.out.println("1 - Consultar Cardápio");
+        System.out.println("2 - Realizar Pedido");
         System.out.println("9 - Sair");
+    }
+
+    public static void imprimirMensagemContinuacao() { System.out.println("Deseja realizar um novo pedido?  (S / N): "); }
+
+    public static void imprimirMensagemConclusaoPedido(Pedido pedido) {
+        System.out.println("Pedido realizado com sucesso!");
+
+        System.out.println("Itens:");
+        System.out.println("=======================");
+        for (int i = 0; i < pedido.getPedido().size(); i++) {
+            System.out.println(pedido.getPedido().get(i).getTipoRefeicao());
+            System.out.println(pedido.getPedido().get(i).getNome());
+            System.out.println(pedido.getPedido().get(i).getPreco());
+            System.out.println("=======================");
+        }
+
+        System.out.println("Valor Total: " + pedido.getValorTotal());
     }
 }

@@ -18,4 +18,14 @@ public class Cardapio {
         refeicoes.add(refeicao);
         return refeicao;
     }
+
+    public Refeicao obterRefeicao(String nome) {
+        for (int i = 0; i < refeicoes.size(); i++) {
+            if (refeicoes.get(i).getNome().equals(nome)) {
+                return refeicoes.get(i);
+            }
+        }
+
+        return null;
+    }
 }
