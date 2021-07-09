@@ -16,9 +16,9 @@ public class PedidoTest {
     @BeforeEach
     public void setUp() {
         itensPedidos = Arrays.asList(
-                new Refeicao(TipoRefeicaoEnum.COMIDA, "Pasta", 30.0),
-                new Refeicao(TipoRefeicaoEnum.COMIDA, "Lasanha", 70.0),
-                new Refeicao(TipoRefeicaoEnum.COMIDA, "Polpetone", 50.0)
+            new Refeicao(TipoRefeicaoEnum.COMIDA, "Pasta", 30.0),
+            new Refeicao(TipoRefeicaoEnum.COMIDA, "Lasanha", 70.0),
+            new Refeicao(TipoRefeicaoEnum.COMIDA, "Polpetone", 50.0)
         );
 
         pedido = new Pedido();
