@@ -29,6 +29,8 @@ public class Impressora {
 
     public static void imprimirMensagemContinuacao() { System.out.println("Deseja realizar um novo pedido?  (S / N): "); }
 
+    public static void imprimirMensagemItemNaoEncontradoCardapio() { System.out.println("Item não encontrado no cardápio!"); }
+
     public static void imprimirMensagemConclusaoPedido(Pedido pedido) {
         System.out.println("Pedido realizado com sucesso!");
 
@@ -43,4 +45,13 @@ public class Impressora {
 
         System.out.println("Valor Total: " + pedido.getValorTotal());
     }
+
+    public static void imprimirMensagemTipoInvalidoBebida() { System.out.println("Valor inválido! Favor solicitar uma bebida!"); }
+
+    public static void imprimirMensagemDesejoBebida() { System.out.println("Deseja pedir uma bebida?"); }
+
+    public static void imprimirMensagemBebida() { System.out.println("Insira o nome da bebida: "); }
+
+    public static void imprimirMensagemContinuacaoBebida() { System.out.println("Deseja realizar um novo pedido?  (S / N): "); }
+
 }

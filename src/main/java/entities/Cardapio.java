@@ -3,6 +3,7 @@ package entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import utils.Impressora;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,18 @@ public class Cardapio {
             }
         }
 
+        Impressora.imprimirMensagemItemNaoEncontradoCardapio();
+        return null;
+    }
+
+    public Refeicao obterBebida(String nome) {
+        for (int i = 0; i < refeicoes.size(); i++) {
+            if (refeicoes.get(i).getNome().equals(nome) && refeicoes.get(i).getTipoRefeicao().toString().equals("BEBIDA")) {
+                return refeicoes.get(i);
+            }
+        }
+
+        Impressora.imprimirMensagemTipoInvalidoBebida();
         return null;
     }
 }

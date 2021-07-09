@@ -53,4 +53,36 @@ public class Leitor {
 
         return continuacao;
     }
+
+    public String lerBebida() {
+        Scanner scanBebida = new Scanner(System.in);
+        Impressora.imprimirMensagemBebida();
+        String nome = scanBebida.next();
+
+        return nome;
+    }
+
+    public String lerDesejoBebida() {
+        Scanner scanDesejoBebida = new Scanner(System.in);
+        Impressora.imprimirMensagemDesejoBebida();
+        String desejoBebida = scanDesejoBebida.next();
+
+        if (!desejoBebida.equalsIgnoreCase("S") && !desejoBebida.equalsIgnoreCase("N")) {
+            throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
+        }
+
+        return desejoBebida;
+    }
+
+    public String lerContinuacaoBebida() {
+        Scanner scanContinuacaoBebida = new Scanner(System.in);
+        Impressora.imprimirMensagemContinuacaoBebida();
+        String continuacaoBebida = scanContinuacaoBebida.next();
+
+        if (!continuacaoBebida.equalsIgnoreCase("S") && !continuacaoBebida.equalsIgnoreCase("N")) {
+            throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
+        }
+
+        return continuacaoBebida;
+    }
 }

@@ -3,8 +3,10 @@ package utils;
 import entities.Cardapio;
 import entities.Pedido;
 import entities.Refeicao;
+import enums.TipoRefeicaoEnum;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MenuPrincipal {
@@ -13,6 +15,27 @@ public class MenuPrincipal {
         Cardapio cardapio = new Cardapio();
         Leitor leitor = new Leitor();
         Pedido pedido = new Pedido();
+
+        /*
+        * Instanciando os itens do cardápio hardcoded para acelerar sua criação
+        * Desta forma não é preciso ficar carregando o cardápio a cada execução via opção 0
+        */
+        List<Refeicao> itensCardapio = Arrays.asList(
+            new Refeicao(TipoRefeicaoEnum.COMIDA, "Pasta", 30.0),
+            new Refeicao(TipoRefeicaoEnum.COMIDA, "Lasanha", 70.0),
+            new Refeicao(TipoRefeicaoEnum.COMIDA, "Polpetone", 50.0),
+
+            new Refeicao(TipoRefeicaoEnum.LANCHE, "Burguer", 30.0),
+            new Refeicao(TipoRefeicaoEnum.LANCHE, "Pizza", 45.0),
+            new Refeicao(TipoRefeicaoEnum.LANCHE, "Fogazza", 20.0),
+
+            new Refeicao(TipoRefeicaoEnum.BEBIDA, "Refrigerante", 5.0),
+            new Refeicao(TipoRefeicaoEnum.BEBIDA, "Agua", 5.0),
+            new Refeicao(TipoRefeicaoEnum.BEBIDA, "Suco", 5.0),
+            new Refeicao(TipoRefeicaoEnum.BEBIDA, "H2O", 5.0)
+        );
+        cardapio.setRefeicoes(itensCardapio);
+
         List<Refeicao> itensPedidos = new ArrayList<>();
         int opcao = -1;
 
@@ -31,7 +54,7 @@ public class MenuPrincipal {
                     }
                     break;
                 case 2:
-                    String continuacao =  "S";
+                    String continuacao = "S";
 
                     while (pedido.continuarPedido(continuacao)) {
                         String nome = leitor.lerPedido();
@@ -39,6 +62,15 @@ public class MenuPrincipal {
                         itensPedidos.add(refeicaoPedido);
 
                         continuacao = leitor.lerContinuacao();
+                    }
+
+                    String continuacaoBebida = leitor.lerDesejoBebida();
+                    while (pedido.continuarPedido(continuacaoBebida)) {
+                        String nome = leitor.lerBebida();
+                        Refeicao bebidaRefeicao = cardapio.obterBebida(nome);
+                        itensPedidos.add(bebidaRefeicao);
+
+                        continuacaoBebida = leitor.lerContinuacao();
                     }
 
                     pedido.setPedido(itensPedidos);
