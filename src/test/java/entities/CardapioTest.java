@@ -35,8 +35,8 @@ public class CardapioTest {
                 new Refeicao(TipoRefeicaoEnum.BEBIDA, "H2O", 5.0),
 
                 new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Cannoli", 25.0),
-                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Sorvete", 15.0),
-                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Tiramisu", 30.0)
+                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Sorvete", 15.0),
+                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Tiramisu", 30.0)
         );
         cardapio.setRefeicoes(itensCardapio);
     }
