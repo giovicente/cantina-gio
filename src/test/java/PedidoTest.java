@@ -1,5 +1,5 @@
-package entities;
-
+import entities.Pedido;
+import entities.Refeicao;
 import enums.TipoRefeicaoEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

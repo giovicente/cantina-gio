@@ -1,5 +1,3 @@
-package entities;
-
 import enums.TipoRefeicaoEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -54,4 +54,15 @@ public class Cardapio {
         Impressora.imprimirMensagemTipoInvalidoEntrada();
         return null;
     }
+
+    public Refeicao obterSobremesa(String nome) {
+        for (int i = 0; i < refeicoes.size(); i++) {
+            if (refeicoes.get(i).getNome().equals(nome) && refeicoes.get(i).getTipoRefeicao().toString().equals("SOBREMESA")) {
+                return refeicoes.get(i);
+            }
+        }
+
+        Impressora.imprimirMensagemTipoInvalidoSobremesa();
+        return null;
+    }
 }

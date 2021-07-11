@@ -90,6 +90,15 @@ public class MenuPrincipal {
                         continuacaoBebida = leitor.lerContinuacao();
                     }
 
+                    String continuacaoSobremesa = leitor.lerDesejo(TipoRefeicaoEnum.SOBREMESA);
+                    while (pedido.continuarPedido(continuacaoSobremesa)) {
+                        String nome = leitor.lerRefeicao(TipoRefeicaoEnum.SOBREMESA);
+                        Refeicao sobremesaRefeicao = cardapio.obterSobremesa(nome);
+                        itensPedidos.add(sobremesaRefeicao);
+
+                        continuacaoSobremesa = leitor.lerContinuacao();
+                    }
+
                     pedido.setPedido(itensPedidos);
                     pedido.setValorTotal(pedido.calculaValorTotal(pedido.getPedido()));
                     Impressora.imprimirMensagemConclusaoPedido(pedido);

@@ -68,6 +68,8 @@ public class Leitor {
             Impressora.imprimirMensagemDesejoEntrada();
         } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.BEBIDA)) {
             Impressora.imprimirMensagemDesejoBebida();
+        } else {
+            Impressora.imprimirMensagemDesejoSobremesa();
         }
 
         String desejo = scanDesejo.next();

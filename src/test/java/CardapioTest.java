@@ -1,5 +1,5 @@
-package entities;
-
+import entities.Cardapio;
+import entities.Refeicao;
 import enums.TipoRefeicaoEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -125,6 +125,32 @@ public class CardapioTest {
     public void consultarEntradaFalhaTipo() {
         String nome = "Pasta";
         Refeicao refeicaoResponse = cardapio.obterEntrada(nome);
+
+        Assertions.assertEquals(null, refeicaoResponse);
+    }
+
+    @Test
+    public void consultarSobremesaSucesso() {
+        Refeicao refeicaoExpected = new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Tiramisu", 30.0);
+
+        String nome = "Tiramisu";
+        Refeicao refeicaoResponse = cardapio.obterSobremesa(nome);
+
+        Assertions.assertEquals(refeicaoExpected, refeicaoResponse);
+    }
+
+    @Test
+    public void consultarSobremesaFalha() {
+        String nome = "Romeu e Julieta";
+        Refeicao refeicaoResponse = cardapio.obterSobremesa(nome);
+
+        Assertions.assertEquals(null, refeicaoResponse);
+    }
+
+    @Test
+    public void consultarSobremesaFalhaTipo() {
+        String nome = "Pasta";
+        Refeicao refeicaoResponse = cardapio.obterSobremesa(nome);
 
         Assertions.assertEquals(null, refeicaoResponse);
     }

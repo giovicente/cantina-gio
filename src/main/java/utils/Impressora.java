@@ -60,4 +60,8 @@ public class Impressora {
 
     public static void imprimirMensagemTipoInvalidoEntrada() { System.out.println("Valor inválido! Favor solicitar uma entrada!"); }
 
+    public static void imprimirMensagemTipoInvalidoSobremesa() { System.out.println("Valor inválido! Favor solicitar uma sobremesa!"); }
+
+    public static void imprimirMensagemDesejoSobremesa() { System.out.println("Deseja pedir uma sobremesa? (S / N): "); }
+
 }
