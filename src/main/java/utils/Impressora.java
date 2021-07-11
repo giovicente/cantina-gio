@@ -5,7 +5,7 @@ import entities.Refeicao;
 
 public class Impressora {
 
-    public static void imprimirMensagemTipoRefeicao() { System.out.println("Insira o tipo de Refeição - COMIDA ou LANCHE: ");}
+    public static void imprimirMensagemTipoRefeicao() { System.out.println("Insira o tipo de Refeição - COMIDA ou LANCHE: "); }
 
     public static void imprimirMensagemNome() { System.out.println("Insira o nome do prato: "); }
 
@@ -29,7 +29,7 @@ public class Impressora {
 
     public static void imprimirMensagemContinuacao() { System.out.println("Deseja realizar um novo pedido?  (S / N): "); }
 
-    public static void imprimirMensagemItemNaoEncontradoCardapio() { System.out.println("Item não encontrado no cardápio!"); }
+    public static void imprimirMensagemItemNaoEncontradoCardapio() { System.out.println("Item não encontrado no cardápio ou tipo de item diferente de COMIDA ou LANCHE! "); }
 
     public static void imprimirMensagemConclusaoPedido(Pedido pedido) {
         System.out.println("Pedido realizado com sucesso!");
@@ -48,10 +48,16 @@ public class Impressora {
 
     public static void imprimirMensagemTipoInvalidoBebida() { System.out.println("Valor inválido! Favor solicitar uma bebida!"); }
 
-    public static void imprimirMensagemDesejoBebida() { System.out.println("Deseja pedir uma bebida?"); }
+    public static void imprimirMensagemDesejoBebida() { System.out.println("Deseja pedir uma bebida? (S / N): "); }
 
     public static void imprimirMensagemBebida() { System.out.println("Insira o nome da bebida: "); }
 
-    public static void imprimirMensagemContinuacaoBebida() { System.out.println("Deseja realizar um novo pedido?  (S / N): "); }
+    public static void imprimirMensagemDesejoEntrada() { System.out.println("Deseja pedir uma entrada? (S / N): "); }
+
+    public static void imprimirMensagemEntrada() { System.out.println("Digite o nome da entrada: "); }
+
+    public static void imprimirMensagemSobremesa() { System.out.println("Digite o nome da sobremesa: "); }
+
+    public static void imprimirMensagemTipoInvalidoEntrada() { System.out.println("Valor inválido! Favor solicitar uma entrada!"); }
 
 }

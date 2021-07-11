@@ -22,7 +22,9 @@ public class Cardapio {
 
     public Refeicao obterRefeicao(String nome) {
         for (int i = 0; i < refeicoes.size(); i++) {
-            if (refeicoes.get(i).getNome().equals(nome)) {
+            if (refeicoes.get(i).getNome().equals(nome) &&
+                    (refeicoes.get(i).getTipoRefeicao().toString().equals("COMIDA") ||
+                            refeicoes.get(i).getTipoRefeicao().toString().equals("LANCHE"))) {
                 return refeicoes.get(i);
             }
         }
@@ -39,6 +41,17 @@ public class Cardapio {
         }
 
         Impressora.imprimirMensagemTipoInvalidoBebida();
+        return null;
+    }
+
+    public Refeicao obterEntrada(String nome) {
+        for (int i = 0; i < refeicoes.size(); i++) {
+            if (refeicoes.get(i).getNome().equals(nome) && refeicoes.get(i).getTipoRefeicao().toString().equals("ENTRADA")) {
+                return refeicoes.get(i);
+            }
+        }
+
+        Impressora.imprimirMensagemTipoInvalidoEntrada();
         return null;
     }
 }

@@ -21,18 +21,26 @@ public class MenuPrincipal {
         * Desta forma não é preciso ficar carregando o cardápio a cada execução via opção 0
         */
         List<Refeicao> itensCardapio = Arrays.asList(
-            new Refeicao(TipoRefeicaoEnum.COMIDA, "Pasta", 30.0),
-            new Refeicao(TipoRefeicaoEnum.COMIDA, "Lasanha", 70.0),
-            new Refeicao(TipoRefeicaoEnum.COMIDA, "Polpetone", 50.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Carpaccio", 35.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Bruschetta", 25.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Antepasto", 20.0),
 
-            new Refeicao(TipoRefeicaoEnum.LANCHE, "Burguer", 30.0),
-            new Refeicao(TipoRefeicaoEnum.LANCHE, "Pizza", 45.0),
-            new Refeicao(TipoRefeicaoEnum.LANCHE, "Fogazza", 20.0),
+                new Refeicao(TipoRefeicaoEnum.COMIDA, "Pasta", 30.0),
+                new Refeicao(TipoRefeicaoEnum.COMIDA, "Lasanha", 70.0),
+                new Refeicao(TipoRefeicaoEnum.COMIDA, "Polpetone", 50.0),
 
-            new Refeicao(TipoRefeicaoEnum.BEBIDA, "Refrigerante", 5.0),
-            new Refeicao(TipoRefeicaoEnum.BEBIDA, "Agua", 5.0),
-            new Refeicao(TipoRefeicaoEnum.BEBIDA, "Suco", 5.0),
-            new Refeicao(TipoRefeicaoEnum.BEBIDA, "H2O", 5.0)
+                new Refeicao(TipoRefeicaoEnum.LANCHE, "Burguer", 30.0),
+                new Refeicao(TipoRefeicaoEnum.LANCHE, "Pizza", 45.0),
+                new Refeicao(TipoRefeicaoEnum.LANCHE, "Fogazza", 20.0),
+
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Refrigerante", 5.0),
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Agua", 5.0),
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Suco", 5.0),
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "H2O", 5.0),
+
+                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Cannoli", 25.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Sorvete", 15.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Tiramisu", 30.0)
         );
         cardapio.setRefeicoes(itensCardapio);
 
@@ -56,17 +64,26 @@ public class MenuPrincipal {
                 case 2:
                     String continuacao = "S";
 
+                    String continuacaoEntrada = leitor.lerDesejo(TipoRefeicaoEnum.ENTRADA);
+                    while (pedido.continuarPedido(continuacaoEntrada)) {
+                        String nome = leitor.lerRefeicao(TipoRefeicaoEnum.ENTRADA);
+                        Refeicao refeicaoPedido = cardapio.obterEntrada(nome);
+                        itensPedidos.add(refeicaoPedido);
+
+                        continuacaoEntrada = leitor.lerContinuacao();
+                    }
+
                     while (pedido.continuarPedido(continuacao)) {
-                        String nome = leitor.lerPedido();
+                        String nome = leitor.lerRefeicao(TipoRefeicaoEnum.COMIDA);
                         Refeicao refeicaoPedido = cardapio.obterRefeicao(nome);
                         itensPedidos.add(refeicaoPedido);
 
                         continuacao = leitor.lerContinuacao();
                     }
 
-                    String continuacaoBebida = leitor.lerDesejoBebida();
+                    String continuacaoBebida = leitor.lerDesejo(TipoRefeicaoEnum.BEBIDA);
                     while (pedido.continuarPedido(continuacaoBebida)) {
-                        String nome = leitor.lerBebida();
+                        String nome = leitor.lerRefeicao(TipoRefeicaoEnum.BEBIDA);
                         Refeicao bebidaRefeicao = cardapio.obterBebida(nome);
                         itensPedidos.add(bebidaRefeicao);
 

@@ -34,11 +34,20 @@ public class Leitor {
         return opcao;
     }
 
-    public String lerPedido() {
-        Scanner scanNome = new Scanner(System.in);
-        Impressora.imprimirMensagemNome();
-        String nome = scanNome.next();
+    public String lerRefeicao(TipoRefeicaoEnum tipoRefeicaoEnum) {
+        Scanner scanRefeicao = new Scanner(System.in);
 
+        if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.ENTRADA)) {
+            Impressora.imprimirMensagemEntrada();
+        } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.COMIDA) || tipoRefeicaoEnum.equals(TipoRefeicaoEnum.LANCHE)) {
+            Impressora.imprimirMensagemNome();
+        } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.BEBIDA)) {
+            Impressora.imprimirMensagemBebida();
+        } else {
+            Impressora.imprimirMensagemSobremesa();
+        }
+
+        String nome = scanRefeicao.next();
         return nome;
     }
 
@@ -47,42 +56,31 @@ public class Leitor {
         Impressora.imprimirMensagemContinuacao();
         String continuacao = scanContinuacao.next();
 
-        if (!continuacao.equalsIgnoreCase("S") && !continuacao.equalsIgnoreCase("N")) {
-            throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
-        }
+        if (validarInputCondicionais(continuacao)) return continuacao;
 
-        return continuacao;
+        throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
     }
 
-    public String lerBebida() {
-        Scanner scanBebida = new Scanner(System.in);
-        Impressora.imprimirMensagemBebida();
-        String nome = scanBebida.next();
+    public String lerDesejo(TipoRefeicaoEnum tipoRefeicaoEnum) {
+        Scanner scanDesejo = new Scanner(System.in);
 
-        return nome;
-    }
-
-    public String lerDesejoBebida() {
-        Scanner scanDesejoBebida = new Scanner(System.in);
-        Impressora.imprimirMensagemDesejoBebida();
-        String desejoBebida = scanDesejoBebida.next();
-
-        if (!desejoBebida.equalsIgnoreCase("S") && !desejoBebida.equalsIgnoreCase("N")) {
-            throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
+        if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.ENTRADA)) {
+            Impressora.imprimirMensagemDesejoEntrada();
+        } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.BEBIDA)) {
+            Impressora.imprimirMensagemDesejoBebida();
         }
 
-        return desejoBebida;
+        String desejo = scanDesejo.next();
+        if (validarInputCondicionais(desejo)) return desejo;
+
+        throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
     }
 
-    public String lerContinuacaoBebida() {
-        Scanner scanContinuacaoBebida = new Scanner(System.in);
-        Impressora.imprimirMensagemContinuacaoBebida();
-        String continuacaoBebida = scanContinuacaoBebida.next();
-
-        if (!continuacaoBebida.equalsIgnoreCase("S") && !continuacaoBebida.equalsIgnoreCase("N")) {
-            throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
+    public boolean validarInputCondicionais(String opcaoDigitada) {
+        if (opcaoDigitada.equalsIgnoreCase("S") || opcaoDigitada.equalsIgnoreCase("N")) {
+            return true;
         }
 
-        return continuacaoBebida;
+        return false;
     }
 }

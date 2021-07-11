@@ -17,6 +17,10 @@ public class CardapioTest {
     public void setUp() {
         cardapio = new Cardapio();
         itensCardapio = Arrays.asList(
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Carpaccio", 35.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Bruschetta", 25.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Antepasto", 20.0),
+
                 new Refeicao(TipoRefeicaoEnum.COMIDA, "Pasta", 30.0),
                 new Refeicao(TipoRefeicaoEnum.COMIDA, "Lasanha", 70.0),
                 new Refeicao(TipoRefeicaoEnum.COMIDA, "Polpetone", 50.0),
@@ -28,7 +32,11 @@ public class CardapioTest {
                 new Refeicao(TipoRefeicaoEnum.BEBIDA, "Refrigerante", 5.0),
                 new Refeicao(TipoRefeicaoEnum.BEBIDA, "Agua", 5.0),
                 new Refeicao(TipoRefeicaoEnum.BEBIDA, "Suco", 5.0),
-                new Refeicao(TipoRefeicaoEnum.BEBIDA, "H2O", 5.0)
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "H2O", 5.0),
+
+                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Cannoli", 25.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Sorvete", 15.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Tiramisu", 30.0)
         );
         cardapio.setRefeicoes(itensCardapio);
     }
@@ -62,6 +70,14 @@ public class CardapioTest {
     }
 
     @Test
+    public void consultarRefeicaoFalhaTipo() {
+        String nome = "Carpaccio";
+        Refeicao refeicaoResponse = cardapio.obterRefeicao(nome);
+
+        Assertions.assertEquals(null, refeicaoResponse);
+    }
+
+    @Test
     public void consultarBebidaSucesso() {
         Refeicao refeicaoExpected = new Refeicao(TipoRefeicaoEnum.BEBIDA, "Refrigerante", 5.0);
 
@@ -75,6 +91,40 @@ public class CardapioTest {
     public void consultarBebidaFalha() {
         String nome = "Whisky";
         Refeicao refeicaoResponse = cardapio.obterBebida(nome);
+
+        Assertions.assertEquals(null, refeicaoResponse);
+    }
+
+    @Test
+    public void consultarBebidaFalhaTipo() {
+        String nome = "Carpaccio";
+        Refeicao refeicaoResponse = cardapio.obterBebida(nome);
+
+        Assertions.assertEquals(null, refeicaoResponse);
+    }
+
+    @Test
+    public void consultarEntradaSucesso() {
+        Refeicao refeicaoExpected = new Refeicao(TipoRefeicaoEnum.ENTRADA, "Carpaccio", 35.0);
+
+        String nome = "Carpaccio";
+        Refeicao refeicaoResponse = cardapio.obterEntrada(nome);
+
+        Assertions.assertEquals(refeicaoExpected, refeicaoResponse);
+    }
+
+    @Test
+    public void consultarEntradaFalha() {
+        String nome = "Pão de queijo";
+        Refeicao refeicaoResponse = cardapio.obterEntrada(nome);
+
+        Assertions.assertEquals(null, refeicaoResponse);
+    }
+
+    @Test
+    public void consultarEntradaFalhaTipo() {
+        String nome = "Pasta";
+        Refeicao refeicaoResponse = cardapio.obterEntrada(nome);
 
         Assertions.assertEquals(null, refeicaoResponse);
     }
