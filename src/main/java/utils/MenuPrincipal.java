@@ -16,32 +16,9 @@ public class MenuPrincipal {
         Leitor leitor = new Leitor();
         Pedido pedido = new Pedido();
 
-        /*
-        * Instanciando os itens do cardápio hardcoded para acelerar sua criação
-        * Desta forma não é preciso ficar carregando o cardápio a cada execução via opção 0
-        */
-        List<Refeicao> itensCardapio = Arrays.asList(
-                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Carpaccio", 35.0),
-                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Bruschetta", 25.0),
-                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Antepasto", 20.0),
+        final int STATUS_CODE_CONCLUIDO_COM_SUCESSO = 0;
 
-                new Refeicao(TipoRefeicaoEnum.COMIDA, "Pasta", 30.0),
-                new Refeicao(TipoRefeicaoEnum.COMIDA, "Lasanha", 70.0),
-                new Refeicao(TipoRefeicaoEnum.COMIDA, "Polpetone", 50.0),
-
-                new Refeicao(TipoRefeicaoEnum.LANCHE, "Burguer", 30.0),
-                new Refeicao(TipoRefeicaoEnum.LANCHE, "Pizza", 45.0),
-                new Refeicao(TipoRefeicaoEnum.LANCHE, "Fogazza", 20.0),
-
-                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Refrigerante", 5.0),
-                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Agua", 5.0),
-                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Suco", 5.0),
-                new Refeicao(TipoRefeicaoEnum.BEBIDA, "H2O", 5.0),
-
-                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Cannoli", 25.0),
-                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Sorvete", 15.0),
-                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Tiramisu", 30.0)
-        );
+        List<Refeicao> itensCardapio = Cardapio.montaCardapio();
         cardapio.setRefeicoes(itensCardapio);
 
         List<Refeicao> itensPedidos = new ArrayList<>();
@@ -63,39 +40,72 @@ public class MenuPrincipal {
                     break;
                 case 2:
                     String continuacao = "S";
+                    int tentativas;
 
                     String continuacaoEntrada = leitor.lerDesejo(TipoRefeicaoEnum.ENTRADA);
                     while (pedido.continuarPedido(continuacaoEntrada)) {
-                        String nome = leitor.lerRefeicao(TipoRefeicaoEnum.ENTRADA);
-                        Refeicao refeicaoPedido = cardapio.obterEntrada(nome);
-                        itensPedidos.add(refeicaoPedido);
+                        Refeicao refeicaoPedido;
+                        tentativas = 0;
 
+                        do {
+                            String nome = leitor.lerRefeicao(TipoRefeicaoEnum.ENTRADA);
+                            refeicaoPedido = cardapio.obterEntrada(nome);
+                            if (refeicaoPedido == null) tentativas++;
+
+                            verificaTentativas(tentativas);
+                        } while (refeicaoPedido == null);
+
+                        itensPedidos.add(refeicaoPedido);
                         continuacaoEntrada = leitor.lerContinuacao();
                     }
 
                     while (pedido.continuarPedido(continuacao)) {
-                        String nome = leitor.lerRefeicao(TipoRefeicaoEnum.COMIDA);
-                        Refeicao refeicaoPedido = cardapio.obterRefeicao(nome);
-                        itensPedidos.add(refeicaoPedido);
+                        Refeicao refeicaoPedido;
+                        tentativas = 0;
 
+                        do {
+                            String nome = leitor.lerRefeicao(TipoRefeicaoEnum.COMIDA);
+                            refeicaoPedido = cardapio.obterRefeicao(nome);
+                            if (refeicaoPedido == null) tentativas++;
+
+                            verificaTentativas(tentativas);
+                        } while (refeicaoPedido == null);
+
+                        itensPedidos.add(refeicaoPedido);
                         continuacao = leitor.lerContinuacao();
                     }
 
                     String continuacaoBebida = leitor.lerDesejo(TipoRefeicaoEnum.BEBIDA);
                     while (pedido.continuarPedido(continuacaoBebida)) {
-                        String nome = leitor.lerRefeicao(TipoRefeicaoEnum.BEBIDA);
-                        Refeicao bebidaRefeicao = cardapio.obterBebida(nome);
-                        itensPedidos.add(bebidaRefeicao);
+                        Refeicao bebidaRefeicao;
+                        tentativas = 0;
 
+                        do {
+                            String nome = leitor.lerRefeicao(TipoRefeicaoEnum.BEBIDA);
+                            bebidaRefeicao = cardapio.obterBebida(nome);
+                            if (bebidaRefeicao == null) tentativas++;
+
+                            verificaTentativas(tentativas);
+                        } while (bebidaRefeicao == null);
+
+                        itensPedidos.add(bebidaRefeicao);
                         continuacaoBebida = leitor.lerContinuacao();
                     }
 
                     String continuacaoSobremesa = leitor.lerDesejo(TipoRefeicaoEnum.SOBREMESA);
                     while (pedido.continuarPedido(continuacaoSobremesa)) {
-                        String nome = leitor.lerRefeicao(TipoRefeicaoEnum.SOBREMESA);
-                        Refeicao sobremesaRefeicao = cardapio.obterSobremesa(nome);
-                        itensPedidos.add(sobremesaRefeicao);
+                        Refeicao sobremesaRefeicao;
+                        tentativas = 0;
 
+                        do {
+                            String nome = leitor.lerRefeicao(TipoRefeicaoEnum.SOBREMESA);
+                            sobremesaRefeicao = cardapio.obterSobremesa(nome);
+                            if (sobremesaRefeicao == null) tentativas++;
+
+                            verificaTentativas(tentativas);
+                        } while (sobremesaRefeicao == null);
+
+                        itensPedidos.add(sobremesaRefeicao);
                         continuacaoSobremesa = leitor.lerContinuacao();
                     }
 
@@ -104,8 +114,18 @@ public class MenuPrincipal {
                     Impressora.imprimirMensagemConclusaoPedido(pedido);
                     break;
                 case 9:
-                    System.exit(0);
+                    System.exit(STATUS_CODE_CONCLUIDO_COM_SUCESSO);
             }
+        }
+    }
+
+    private static void verificaTentativas(int tentativas) {
+        final int STATUS_CODE_LIMITE_TENTATIVAS_EXCEDIDO = 1;
+        final int NUMERO_MAXIMO_TENTATIVAS = 3;
+
+        if (tentativas == NUMERO_MAXIMO_TENTATIVAS) {
+            System.out.println("Limite de tentativas excedido, finalizando processo!");
+            System.exit(STATUS_CODE_LIMITE_TENTATIVAS_EXCEDIDO);
         }
     }
 }

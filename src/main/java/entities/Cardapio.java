@@ -1,11 +1,13 @@
 package entities;
 
+import enums.TipoRefeicaoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import utils.Impressora;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -64,5 +66,30 @@ public class Cardapio {
 
         Impressora.imprimirMensagemTipoInvalidoSobremesa();
         return null;
+    }
+
+    public static List<Refeicao> montaCardapio() {
+        return Arrays.asList(
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Carpaccio", 35.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Bruschetta", 25.0),
+                new Refeicao(TipoRefeicaoEnum.ENTRADA, "Antepasto", 20.0),
+
+                new Refeicao(TipoRefeicaoEnum.COMIDA, "Pasta", 30.0),
+                new Refeicao(TipoRefeicaoEnum.COMIDA, "Lasanha", 70.0),
+                new Refeicao(TipoRefeicaoEnum.COMIDA, "Polpetone", 50.0),
+
+                new Refeicao(TipoRefeicaoEnum.LANCHE, "Burguer", 30.0),
+                new Refeicao(TipoRefeicaoEnum.LANCHE, "Pizza", 45.0),
+                new Refeicao(TipoRefeicaoEnum.LANCHE, "Fogazza", 20.0),
+
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Refrigerante", 5.0),
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Agua", 5.0),
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "Suco", 5.0),
+                new Refeicao(TipoRefeicaoEnum.BEBIDA, "H2O", 5.0),
+
+                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Cannoli", 25.0),
+                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Sorvete", 15.0),
+                new Refeicao(TipoRefeicaoEnum.SOBREMESA, "Tiramisu", 30.0)
+        );
     }
 }
