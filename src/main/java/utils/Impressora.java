@@ -64,4 +64,9 @@ public class Impressora {
 
     public static void imprimirMensagemDesejoSobremesa() { System.out.println("Deseja pedir uma sobremesa? (S / N): "); }
 
+    public static void imprimirMensagemPedidoExpirado() { System.out.println("Limite de tentativas excedido!!! Você será direcionado(a) novamente ao Menu Principal e pode recomeçar seu pedido"); }
+
+    public static void imprimirMensagemUltimaTentativaPedido() { System.out.println("Atenção!!! Você já inseriu valores inválidos por duas tentativas. Caso insira novamente um valor inválido, o pedido será anulado e você será direcionado(a) de volta ao Menu Principal!"); }
+
+    public static void imprimirMensagemValorInvalidoMenu() { System.out.println("Valor inválido! Digitar somente números condizentes com as opções!!!"); }
 }

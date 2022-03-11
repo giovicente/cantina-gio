@@ -7,6 +7,7 @@ import enums.TipoRefeicaoEnum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class MenuPrincipal {
@@ -26,7 +27,13 @@ public class MenuPrincipal {
 
         while (true) {
             Impressora.imprimirMenuPrincipal();
-            opcao = leitor.inserirOpcaoMenu();
+
+            try {
+                opcao = leitor.inserirOpcaoMenu();
+            } catch (InputMismatchException e) {
+                Impressora.imprimirMensagemValorInvalidoMenu();
+                MenuPrincipal.montarMenuPrincipal();
+            }
 
             switch (opcao) {
                 case 0:
@@ -120,12 +127,14 @@ public class MenuPrincipal {
     }
 
     private static void verificaTentativas(int tentativas) {
-        final int STATUS_CODE_LIMITE_TENTATIVAS_EXCEDIDO = 1;
+        final int NUMERO_ALERTA_ULTIMA_TENTATIVA = 2;
         final int NUMERO_MAXIMO_TENTATIVAS = 3;
 
-        if (tentativas == NUMERO_MAXIMO_TENTATIVAS) {
-            System.out.println("Limite de tentativas excedido, finalizando processo!");
-            System.exit(STATUS_CODE_LIMITE_TENTATIVAS_EXCEDIDO);
+        if (tentativas == NUMERO_ALERTA_ULTIMA_TENTATIVA) {
+            Impressora.imprimirMensagemUltimaTentativaPedido();
+        } else if (tentativas == NUMERO_MAXIMO_TENTATIVAS) {
+            Impressora.imprimirMensagemPedidoExpirado();
+            montarMenuPrincipal();
         }
     }
 }
