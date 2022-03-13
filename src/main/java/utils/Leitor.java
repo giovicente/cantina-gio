@@ -37,14 +37,20 @@ public class Leitor {
     public String lerRefeicao(TipoRefeicaoEnum tipoRefeicaoEnum) {
         Scanner scanRefeicao = new Scanner(System.in);
 
-        if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.ENTRADA)) {
-            Impressora.imprimirMensagemEntrada();
-        } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.COMIDA) || tipoRefeicaoEnum.equals(TipoRefeicaoEnum.LANCHE)) {
-            Impressora.imprimirMensagemNome();
-        } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.BEBIDA)) {
-            Impressora.imprimirMensagemBebida();
-        } else {
-            Impressora.imprimirMensagemSobremesa();
+        switch (tipoRefeicaoEnum) {
+            case ENTRADA:
+                Impressora.imprimirMensagemEntrada();
+                break;
+            case COMIDA:
+            case LANCHE:
+                Impressora.imprimirMensagemNome();
+                break;
+            case BEBIDA:
+                Impressora.imprimirMensagemBebida();
+                break;
+            case SOBREMESA:
+                Impressora.imprimirMensagemSobremesa();
+                break;
         }
 
         String nome = scanRefeicao.next();
@@ -68,12 +74,16 @@ public class Leitor {
         String desejo = "";
 
         while (!validarInputCondicionais(desejo)) {
-            if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.ENTRADA)) {
-                Impressora.imprimirMensagemDesejoEntrada();
-            } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.BEBIDA)) {
-                Impressora.imprimirMensagemDesejoBebida();
-            } else {
-                Impressora.imprimirMensagemDesejoSobremesa();
+            switch (tipoRefeicaoEnum) {
+                case ENTRADA:
+                    Impressora.imprimirMensagemDesejoEntrada();
+                    break;
+                case BEBIDA:
+                    Impressora.imprimirMensagemDesejoBebida();
+                    break;
+                case SOBREMESA:
+                    Impressora.imprimirMensagemDesejoSobremesa();
+                    break;
             }
 
             desejo = scanDesejo.next();
