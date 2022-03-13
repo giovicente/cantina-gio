@@ -6,7 +6,6 @@ import entities.Refeicao;
 import enums.TipoRefeicaoEnum;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -122,6 +121,8 @@ public class MenuPrincipal {
                     break;
                 case 9:
                     System.exit(STATUS_CODE_CONCLUIDO_COM_SUCESSO);
+                default:
+                    Impressora.imprimirMensagemValorInvalidoMenu();
             }
         }
     }

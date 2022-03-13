@@ -26,8 +26,9 @@ public class PedidoTest {
 
     @Test
     public void testarCalculoValorTotal() {
+        final double VALOR_TOTAL_ESPERADO = 150.0d;
         double valorTotal = pedido.calculaValorTotal(itensPedidos);
-        Assertions.assertEquals(150.0, valorTotal);
+        Assertions.assertEquals(VALOR_TOTAL_ESPERADO, valorTotal);
     }
 
 }

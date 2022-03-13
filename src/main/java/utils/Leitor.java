@@ -1,7 +1,7 @@
 package utils;
 
-import enums.TipoRefeicaoEnum;
 import entities.Refeicao;
+import enums.TipoRefeicaoEnum;
 
 import java.util.Scanner;
 
@@ -53,36 +53,38 @@ public class Leitor {
 
     public String lerContinuacao() {
         Scanner scanContinuacao = new Scanner(System.in);
-        Impressora.imprimirMensagemContinuacao();
-        String continuacao = scanContinuacao.next();
+        String continuacao = "";
 
-        if (validarInputCondicionais(continuacao)) return continuacao;
+        while (!validarInputCondicionais(continuacao)) {
+            Impressora.imprimirMensagemContinuacao();
+            continuacao = scanContinuacao.next();
+        }
 
-        throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
+        return continuacao;
     }
 
     public String lerDesejo(TipoRefeicaoEnum tipoRefeicaoEnum) {
         Scanner scanDesejo = new Scanner(System.in);
+        String desejo = "";
 
-        if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.ENTRADA)) {
-            Impressora.imprimirMensagemDesejoEntrada();
-        } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.BEBIDA)) {
-            Impressora.imprimirMensagemDesejoBebida();
-        } else {
-            Impressora.imprimirMensagemDesejoSobremesa();
+        while (!validarInputCondicionais(desejo)) {
+            if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.ENTRADA)) {
+                Impressora.imprimirMensagemDesejoEntrada();
+            } else if (tipoRefeicaoEnum.equals(TipoRefeicaoEnum.BEBIDA)) {
+                Impressora.imprimirMensagemDesejoBebida();
+            } else {
+                Impressora.imprimirMensagemDesejoSobremesa();
+            }
+
+            desejo = scanDesejo.next();
         }
 
-        String desejo = scanDesejo.next();
-        if (validarInputCondicionais(desejo)) return desejo;
-
-        throw new IllegalArgumentException("Digitar somente 'S' ou 'N'");
+        return desejo;
     }
 
     public boolean validarInputCondicionais(String opcaoDigitada) {
-        if (opcaoDigitada.equalsIgnoreCase("S") || opcaoDigitada.equalsIgnoreCase("N")) {
-            return true;
-        }
 
-        return false;
+        return opcaoDigitada.equalsIgnoreCase("S")
+                || opcaoDigitada.equalsIgnoreCase("N") ? true : false;
     }
 }

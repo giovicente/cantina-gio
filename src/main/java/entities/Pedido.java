@@ -23,7 +23,7 @@ public class Pedido {
     public double calculaValorTotal(List<Refeicao> pedido) {
         double valorTotal = 0;
 
-        for (int i =0; i < pedido.size(); i++) {
+        for (int i = 0; i < pedido.size(); i++) {
             valorTotal += pedido.get(i).getPreco();
         }
 
