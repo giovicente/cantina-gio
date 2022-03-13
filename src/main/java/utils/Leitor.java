@@ -84,7 +84,6 @@ public class Leitor {
 
     public boolean validarInputCondicionais(String opcaoDigitada) {
 
-        return opcaoDigitada.equalsIgnoreCase("S")
-                || opcaoDigitada.equalsIgnoreCase("N") ? true : false;
+        return opcaoDigitada.equalsIgnoreCase("S") || opcaoDigitada.equalsIgnoreCase("N");
     }
 }
