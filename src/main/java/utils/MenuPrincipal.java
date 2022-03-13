@@ -115,8 +115,8 @@ public class MenuPrincipal {
                         continuacaoSobremesa = leitor.lerContinuacao();
                     }
 
-                    pedido.setPedido(itensPedidos);
-                    pedido.setValorTotal(pedido.calculaValorTotal(pedido.getPedido()));
+                    pedido.setItens(itensPedidos);
+                    pedido.setValorTotal(pedido.calculaValorTotal(pedido.getItens()));
                     Impressora.imprimirMensagemConclusaoPedido(pedido);
                     break;
                 case 9:

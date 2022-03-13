@@ -11,20 +11,18 @@ import java.util.List;
 @AllArgsConstructor
 public class Pedido {
 
-    private List<Refeicao> pedido;
+    private List<Refeicao> itens;
     private double valorTotal;
 
     public boolean continuarPedido(String continuacao) {
-        if (continuacao.equalsIgnoreCase("S")) return true;
-
-        return false;
+        return continuacao.equalsIgnoreCase("S");
     }
 
-    public double calculaValorTotal(List<Refeicao> pedido) {
+    public double calculaValorTotal(List<Refeicao> itens) {
         double valorTotal = 0;
 
-        for (int i = 0; i < pedido.size(); i++) {
-            valorTotal += pedido.get(i).getPreco();
+        for (int i = 0; i < itens.size(); i++) {
+            valorTotal += itens.get(i).getPreco();
         }
 
         return valorTotal;

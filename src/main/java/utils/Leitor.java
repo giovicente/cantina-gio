@@ -1,5 +1,6 @@
 package utils;
 
+import com.sun.istack.internal.NotNull;
 import entities.Refeicao;
 import enums.TipoRefeicaoEnum;
 
@@ -34,7 +35,7 @@ public class Leitor {
         return opcao;
     }
 
-    public String lerRefeicao(TipoRefeicaoEnum tipoRefeicaoEnum) {
+    public String lerRefeicao(@NotNull TipoRefeicaoEnum tipoRefeicaoEnum) {
         Scanner scanRefeicao = new Scanner(System.in);
 
         switch (tipoRefeicaoEnum) {
@@ -92,7 +93,7 @@ public class Leitor {
         return desejo;
     }
 
-    public boolean validarInputCondicionais(String opcaoDigitada) {
+    public boolean validarInputCondicionais(@NotNull String opcaoDigitada) {
 
         return opcaoDigitada.equalsIgnoreCase("S") || opcaoDigitada.equalsIgnoreCase("N");
     }

@@ -46,10 +46,10 @@ public class Impressora {
 
         System.out.println("Itens:");
         System.out.println("=======================");
-        for (int i = 0; i < pedido.getPedido().size(); i++) {
-            System.out.println(pedido.getPedido().get(i).getTipoRefeicao());
-            System.out.println(pedido.getPedido().get(i).getNome());
-            System.out.println(pedido.getPedido().get(i).getPreco());
+        for (int i = 0; i < pedido.getItens().size(); i++) {
+            System.out.println(pedido.getItens().get(i).getTipoRefeicao());
+            System.out.println(pedido.getItens().get(i).getNome());
+            System.out.println(pedido.getItens().get(i).getPreco());
             System.out.println("=======================");
         }
 
