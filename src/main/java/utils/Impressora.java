@@ -103,8 +103,4 @@ public class Impressora {
     public static void imprimirMensagemValorInvalidoMenu() {
         System.out.println("Valor inválido! Digitar somente números condizentes com as opções!!!");
     }
-
-    public static void imprimirMensagemOpcaoContinuacaoInvalida() {
-        System.out.println("Digitar somente 'S' ou 'N'");
-    }
 }
