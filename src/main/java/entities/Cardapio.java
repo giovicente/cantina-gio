@@ -23,10 +23,13 @@ public class Cardapio {
     }
 
     public Refeicao obterRefeicao(String nome) {
+        final String TIPO_REFEICAO_COMIDA = "COMIDA";
+        final String TIPO_REFEICAO_LANCHE = "LANCHE";
+
         for (int i = 0; i < refeicoes.size(); i++) {
             if (refeicoes.get(i).getNome().equals(nome) &&
-                    (refeicoes.get(i).getTipoRefeicao().toString().equals("COMIDA") ||
-                            refeicoes.get(i).getTipoRefeicao().toString().equals("LANCHE"))) {
+                    (refeicoes.get(i).getTipoRefeicao().toString().equals(TIPO_REFEICAO_COMIDA) ||
+                            refeicoes.get(i).getTipoRefeicao().toString().equals(TIPO_REFEICAO_LANCHE))) {
                 return refeicoes.get(i);
             }
         }
