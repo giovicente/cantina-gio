@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Getter
 @Setter
@@ -21,12 +22,16 @@ public class Pedido {
     }
 
     public double calculaValorTotal(List<Refeicao> itens) {
-        double valorTotal = 0;
+        AtomicReference<Double> valorTotal = new AtomicReference<>((double) 0);
+        this.valorTotal = 0.0d;
 
-        for (int i = 0; i < itens.size(); i++) {
-            valorTotal += itens.get(i).getPreco();
-        }
+//      itens.forEach((itemRefeicao) ->
+//              valorTotal.updateAndGet(v -> (double) (v + itemRefeicao.getPreco())));
 
-        return valorTotal;
+//      return valorTotal.get();
+
+        for (int i = 0; i < itens.size(); i++) { this.valorTotal += itens.get(i).getPreco(); }
+
+        return this.valorTotal;
     }
 }
